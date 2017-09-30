@@ -6,13 +6,35 @@
 
            function geoJson2heat(geojson, intensity) {
                return geojson.rows.map(function(feature) {
-                   return [
-                       feature.geometry.coordinates[1],
-                       feature.geometry.coordinates[0],
-                       normalise(feature.properties['temperature'])
-                   ];
+                   return {
+                       'latitude': feature.geometry.coordinates[1],
+                       'longitude': feature.geometry.coordinates[0],
+                       'temperature': normalise(feature.properties['temperature'])
+                   };
                });
            }
+
+
+           var cfg = {
+               // radius should be small ONLY if scaleRadius is true (or small radius is intended)
+               // if scaleRadius is false it will be the constant radius used in pixels
+               "radius": 2,
+               "maxOpacity": .8,
+               // scales the radius based on map zoom
+               "scaleRadius": true,
+               // if set to false the heatmap uses the global maximum for colorization
+               // if activated: uses the data maximum within the current map boundaries 
+               //   (there will always be a red spot with useLocalExtremas true)
+               "useLocalExtrema": true,
+               // which field name in your data represents the latitude - default "lat"
+               latField: 'latitude',
+               // which field name in your data represents the longitude - default "lng"
+               lngField: 'longitude',
+               // which field name in your data represents the data value - default "value"
+               valueField: 'temperature'
+           };
+
+           var heatmapLayer = new HeatmapOverlay(cfg);
 
            var taxiIcon = L.icon({
                iconUrl: 'http://www.zaragoza.es/contenidos/iconos/paradasdeTaxi.png',
@@ -93,9 +115,12 @@
            });
            $("#temperatures").click(function() {
                $.getJSON("temperatures_proxy", function(data, status) {
-                   var heat = L.heatLayer(geoJson2heat(data), {
-                       radius: 65
-                   }).addTo(map);
+                   var testData = {
+                       max: 40,
+                       data: geoJson2heat(data)
+                   };
+                   heatmapLayer.setData(testData);
+                   heatmapLayer.addTo(map);
                });
            });
        });
