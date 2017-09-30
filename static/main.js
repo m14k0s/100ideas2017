@@ -1,7 +1,7 @@
        $(document).ready(function() {
            function normalise(temperature) {
                var temp = parseInt(temperature);
-               return (temp - 30) / (40 - 30);
+               return max(0,min(1,(temp - 30) / (40 - 30)));
            }
 
            function geoJson2heat(geojson, intensity) {
