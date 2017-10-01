@@ -7,6 +7,11 @@
     background-color: lightblue;
 }
 
+.foot {
+    min-height: 40px;
+    background-color: #151964;
+}
+
 .header {
     background-image: url("header-image.png");
     width: 100%;
