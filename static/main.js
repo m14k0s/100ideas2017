@@ -6,6 +6,7 @@
 
            function geoJson2heat(geojson, intensity) {
                return geojson.rows.map(function(feature) {
+                
                    return {
                        'latitude': feature.geometry.coordinates[1],
                        'longitude': feature.geometry.coordinates[0],
@@ -18,10 +19,10 @@
            var cfg = {
                // radius should be small ONLY if scaleRadius is true (or small radius is intended)
                // if scaleRadius is false it will be the constant radius used in pixels
-               "radius": 2,
+               "radius": 12,
                "maxOpacity": .8,
                // scales the radius based on map zoom
-               "scaleRadius": true,
+               "scaleRadius": false,
                // if set to false the heatmap uses the global maximum for colorization
                // if activated: uses the data maximum within the current map boundaries 
                //   (there will always be a red spot with useLocalExtremas true)
@@ -59,7 +60,9 @@
 
            var map = L.map('map', {
                center: [41.67045402508031, -0.9047149146440716],
-               zoom: 15 //,
+               zoom: 13,
+               minZoom: 12,
+               maxZoom: 18
                //layers: [stations, accidents]
            });
            L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {}).addTo(map);
@@ -116,7 +119,7 @@
            $("#temperatures").click(function() {
                $.getJSON("temperatures_proxy", function(data, status) {
                    var testData = {
-                       max: 40,
+                       max: 1,
                        data: geoJson2heat(data)
                    };
                    heatmapLayer.setData(testData);
