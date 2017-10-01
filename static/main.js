@@ -82,10 +82,10 @@
                            });
                        },
                        onEachFeature: function(feature, layer) {
-                           layer.bindPopup('<strong>' + feature.properties.title + '</strong>' +
+                           layer.bindPopup('<div class="test-popup"><strong>' + feature.properties.title + '</strong>' +
                                '<p>Estado: ' + feature.properties.estado + '</p>' +
                                '<p>Bicis Disponibles: ' + feature.properties.bicisDisponibles + '</p>' +
-                               '<p>Anclajes Disponibles: ' + feature.properties.anclajesDisponibles + '</p>');
+                               '<p>Anclajes Disponibles: ' + feature.properties.anclajesDisponibles + '</p></div>');
                        }
                    }).addTo(map);
                });
@@ -131,7 +131,9 @@
               map.remove();
               map = L.map('map', {
                center: [41.67045402508031, -0.9047149146440716],
-               zoom: 15 //,
+               zoom: 13,
+               minZoom: 12,
+               maxZoom: 18
                //layers: [stations, accidents]
             });
                 L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {}).addTo(map);
