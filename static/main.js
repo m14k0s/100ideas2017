@@ -59,8 +59,8 @@
            //var accidents = L.geoJSON();
 
            var map = L.map('map', {
-               center: [41.67045402508031, -0.9047149146440716],
-               zoom: 13,
+               center: [41.447469, -0.885575],
+               zoom: 15,
                minZoom: 12,
                maxZoom: 18
                //layers: [stations, accidents]
@@ -117,25 +117,32 @@
                });
            });
            $("#temperatures").click(function() {
-               $.getJSON("temperatures_proxy", function(data, status) {
-                   var testData = {
-                       max: 1,
-                       data: geoJson2heat(data)
-                   };
-                   console.log('temperaturas')
-                   heatmapLayer.setData(testData);
-                   heatmapLayer.addTo(map);
-               });
+               for (i = 1; i < 364; i++) {
+                   $.getJSON("temperatures_proxy/" + i, function(data, status) {
+                       var testData = {
+                           max: 1,
+                           data: geoJson2heat(data)
+                       };
+                       console.log('temperaturas')
+                       heatmapLayer.setData(testData);
+                       heatmapLayer.addTo(map);
+                   });
+                   setTimeout(
+                       function() {
+                           //do something special
+                       }, 200);
+               }
+
            });
            $("#remove").click(function() {
-              map.remove();
-              map = L.map('map', {
-               center: [41.67045402508031, -0.9047149146440716],
-               zoom: 13,
-               minZoom: 12,
-               maxZoom: 18
-               //layers: [stations, accidents]
-            });
-                L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {}).addTo(map);
+               map.remove();
+               map = L.map('map', {
+                   center: [41.647469, -0.9047149146440716],
+                   zoom: 13,
+                   minZoom: 12,
+                   maxZoom: 18
+                   //layers: [stations, accidents]
+               });
+               L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {}).addTo(map);
            });
        });

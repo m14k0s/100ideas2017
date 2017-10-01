@@ -9,9 +9,9 @@ app = Flask(__name__)
 def hello():
     return render_template('index.html')
 
-@app.route('/temperatures_proxy')
-def temperatures_proxy():
-    resp = requests.get('http://cosculluela.es:28017/100ideas/data/?limit=-50000').json()
+@app.route('/temperatures_proxy/<int:limit>')
+def temperatures_proxy(limit):
+    resp = requests.get('http://cosculluela.es:28017/100ideas/trayectoryData/?limit=-' + str(limit)).json()
     return jsonify(resp)
 
 if __name__ == '__main__':
