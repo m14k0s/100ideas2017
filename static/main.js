@@ -82,10 +82,10 @@
                            });
                        },
                        onEachFeature: function(feature, layer) {
-                           layer.bindPopup('<strong>' + feature.properties.title + '</strong>' +
+                           layer.bindPopup('<div class="test-popup"><strong>' + feature.properties.title + '</strong>' +
                                '<p>Estado: ' + feature.properties.estado + '</p>' +
                                '<p>Bicis Disponibles: ' + feature.properties.bicisDisponibles + '</p>' +
-                               '<p>Anclajes Disponibles: ' + feature.properties.anclajesDisponibles + '</p>');
+                               '<p>Anclajes Disponibles: ' + feature.properties.anclajesDisponibles + '</p></div>');
                        }
                    }).addTo(map);
                });
@@ -129,7 +129,7 @@
            $("#remove").click(function() {
               map.remove();
               map = L.map('map', {
-               center: [41.67045402508031, -0.9047149146440716],
+               center: [39.01045402508031, -0.9047149146440716],
                zoom: 15 //,
                //layers: [stations, accidents]
             });

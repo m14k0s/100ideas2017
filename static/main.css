@@ -19,3 +19,7 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.leaflet-popup-content-wrapper {
+  background-color: #e0e0e0
+}
