@@ -11,7 +11,7 @@ def hello():
 
 @app.route('/temperatures_proxy')
 def temperatures_proxy():
-    resp = requests.get('http://cosculluela.es:28017/100ideas/data/').json()
+    resp = requests.get('http://cosculluela.es:28017/100ideas/data/?limit=-50000').json()
     return jsonify(resp)
 
 if __name__ == '__main__':
