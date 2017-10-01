@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.heat/0.2.0/leaflet-heat.js"></script>-->
+<script src="static/heatmap.js"></script>
+<script src="static/leaflet-heatmap.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.heat/0.2.0/leaflet-heat.js"></script>-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="static/main.js"></script>
+    <link rel="stylesheet" href="static/main.css" />
+
+</head>
+
+<body>
+        <div class="header">
+        </div>
+        <div class="info">
+          <div class="container">
+            <div style="margin-bottom: 10px; margin-top: 10px;">
+                <button id="stations" class="btn-primary">Estaciones de bicicleta</button>
+                <button id="accidents" type="button" class="btn-primary">Accidentes</button>
+                <button id="taxis" type="button" class="btn-primary" style="margin-right: 5%">Estaciones de taxi</button>
+
+                <button id="temperatures" type="button" class="btn-success">Temperaturas</button>
+                <button id="temperatures" type="button" class="btn-success">Ruido</button>
+                <button id="temperatures" type="button" class="btn-success">CO2</button>
+
+                <button id="remove" type="button" class="btn-danger" style="margin-left: 20%">Limpiar mapa</button>
+            </div>
+            <div id='map'>
+            </div>
+        </div>
+    </div>
+    <div class="foot">
+      <p></p>
+    </div>
+</body>
+
+</html>
