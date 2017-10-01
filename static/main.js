@@ -6,7 +6,7 @@
 
            function geoJson2heat(geojson, intensity) {
                return geojson.rows.map(function(feature) {
-                
+
                    return {
                        'latitude': feature.geometry.coordinates[1],
                        'longitude': feature.geometry.coordinates[0],
@@ -19,12 +19,12 @@
            var cfg = {
                // radius should be small ONLY if scaleRadius is true (or small radius is intended)
                // if scaleRadius is false it will be the constant radius used in pixels
-               "radius": 12,
-               "maxOpacity": .8,
+               "radius": .00175,
+               "maxOpacity": .6,
                // scales the radius based on map zoom
-               "scaleRadius": false,
+               "scaleRadius": true,
                // if set to false the heatmap uses the global maximum for colorization
-               // if activated: uses the data maximum within the current map boundaries 
+               // if activated: uses the data maximum within the current map boundaries
                //   (there will always be a red spot with useLocalExtremas true)
                "useLocalExtrema": true,
                // which field name in your data represents the latitude - default "lat"
@@ -122,6 +122,7 @@
                        max: 1,
                        data: geoJson2heat(data)
                    };
+                   console.log('temperaturas')
                    heatmapLayer.setData(testData);
                    heatmapLayer.addTo(map);
                });
