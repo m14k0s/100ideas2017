@@ -123,4 +123,13 @@
                    heatmapLayer.addTo(map);
                });
            });
+           $("#remove").click(function() {
+              map.remove();
+              map = L.map('map', {
+               center: [41.67045402508031, -0.9047149146440716],
+               zoom: 15 //,
+               //layers: [stations, accidents]
+            });
+                L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {}).addTo(map);
+           });
        });
